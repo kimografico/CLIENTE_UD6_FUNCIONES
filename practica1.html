@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UD 6 - Práctica 1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Práctica 1</h1>
+    <h2>Palabras ordenadas</h2>
+    <p>Crea una aplicación web que pida al usuario palabras continuamente hasta que el popup se deje vacío o se cancele.</p>
+    <p>A continuación, se eliminarán todas las palabras repetidas y además se ordenarán en español, pero en orden inverso (de la Z a la A)
+       y se mostrará el resultado por pantalla.</p>
+    <p>Utilizar funciones flecha si se considera apropiado.</p>
+    <p class="ayuda">Ayuda: cancelar el popup devuelve null.</p>
+    <p id="respuesta"></p>
+    <a href="index.html">◀ VOLVER</a>
+
+<script src="main.js"></script>
+
+<script>
+
+    let listaPalabras = new Set(palabras); // Convertimos a Set para eliminar duplicados
+    listaPalabras = [...listaPalabras]; // Volvemos a convertir a Array para poder ordenar
+
+    // ¡Función de flecha!   ↓
+    listaPalabras.sort((a, b)=>b.localeCompare(a));  // localeCompare compara segun el idioma local.  Para hacerlo en orden contrario, se compara b con a en lugar de a con b
+
+    document.getElementById("respuesta").innerHTML = "<b>LISTA DE PALABRAS:</b><br><br>" + listaPalabras.join("<br>"); // Hay que usar Join para pasar de Array a Cadena y poder mostrarlo
+
+</script>
+
+</body>
+</html>

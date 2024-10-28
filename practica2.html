@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UD 6 - Práctica 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Práctica 2</h1>
+    <h2>Número de palabras</h2>
+    <p>Crea una aplicación web que pida al usuario palabras continuamente hasta que el popup se deje vacío o se cancele.</p>
+    <p>Crear una función que recibirá todas las palabras y devolverá un mapa que contenga como clave cada palabra y cuyo valor
+       será el número de veces que aparece esa palabra en el array. Mostrar los resultados por pantalla.</p>
+    <p class="ayuda">Ayuda: Como en las 2 prácticas se pide introducir las palabras y devolver el resultado de la misma forma,
+       podéis sacar esa parte del código a un script común que utilicen las 2 prácticas (main.js).</p>
+    <p id="respuesta"></p>
+    <a href="index.html">◀ VOLVER</a>
+
+<script src="main.js"></script>
+
+<script>
+
+    mapaPalabras = new Map();
+    palabras.forEach(element => {
+        if ((mapaPalabras.get(element) == undefined)){ // Si no aparece en el mapa, se le da valor 1
+            mapaPalabras.set(element, 1);
+        } else {
+            mapaPalabras.set(element, (mapaPalabras.get(element) + 1)); // Si aparece en el mapa, se le suma 1 al valor cantidad
+        }
+    });
+    
+    let resultado = "<b>LISTA DE PALABRAS:</b><br><br>";
+
+    mapaPalabras.forEach((cantidad, palabra) => {  // Hacemos un forEach para recorrer el Mapa y concatenar cada clave-valor en un string
+        let veces = " vez <br>";
+        if (cantidad > 1){
+            veces = " veces<br>"
+        }
+        if (palabra != null){
+            resultado += "<b>" + palabra + "</b>: aparece " + cantidad + veces;
+        }
+        
+    });
+
+    document.getElementById("respuesta").innerHTML =  resultado; 
+
+</script>
+</body>
+</html>

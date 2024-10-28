@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UD 6 - Práctica 3</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Práctica 3</h1>
+    <h2>Filtro con CallBack</h2>
+    <p>El método filter de los arrays permite indicar una función callback, para aplicar un filtro a los elementos del array.
+       [Esta parte es sólo a efectos informativos, no hace falta que hagamos nada con el método filtro de los arrays].</p>
+    <p>Es una buena práctica para aprender a implementar funciones callback tratar de crear nuestras propias funciones.</p>
+    <p>Crea una función que se llame filtro y que reciba un array y una función callback. La función callback se entenderá
+       que sólo tiene un parámetro. Esta función se aplicará a cada elemento del array y el resultado volverá a guardarse en el mismo array.</p>
+    <p>Por ejemplo: Array [1,2,3,4]<br>
+       función = multiplicar por 2<br>
+       Resultado: [2, 4, 6, 8]</p>
+    <p>Crear otros dos casos:</p>
+    <p> - Dado un array de palabras en minúsculas, pasarlas a mayúsculas.<br>
+        - Dado un array de números, calcular el factorial de cada uno.</p> 
+    <p> <a href="https://es.wikipedia.org/wiki/Factorial" target="_blank">WIKI FACTORIAL</a></p>
+    <p id="respuesta"></p>
+    <a href="index.html">◀ VOLVER</a>
+
+</body>
+
+<script>
+    
+    // EJERCICIO 1
+    
+    let numeros = [1, 2, 3, 4];
+
+    function doble(y){  // Primero se crea la función callback
+        return 2 * y;
+    };
+    
+    function filtro (array, callback){  // Luego se crea la función DONDE vamos a usar el callback
+        for (let i = 0; i < array.length; i++) {
+            array[i] = callback(array[i]);            
+        }
+        return array;
+    }
+    document.getElementById("respuesta").innerHTML += "<b>Array números: </b>" + numeros.join(", ");
+    document.getElementById("respuesta").innerHTML += "<b><br>Array doblado: </b>" + filtro(numeros, doble).join(", ");  // Se llama a la función pasándole el array y la función callback
+    document.getElementById("respuesta").innerHTML += "<br><br> ";
+
+
+    // EJERCICIO 2
+
+    let palabras = ["manzana", "banana", "naranja", "pera", "uva", "limón"];
+
+    function mayus(palabra){  // Primero se crea la función callback
+        return palabra.toUpperCase();
+    };
+
+    function todoMayus(array, callback){
+        for (let i = 0; i < array.length; i++){
+            array[i] = mayus(array[i]);
+        }
+        return array;
+    }
+    document.getElementById("respuesta").innerHTML += "<b>Array palabras: </b>" + palabras.join(", ");
+    document.getElementById("respuesta").innerHTML += "<b><br>Array en mayúsculas: </b>" + todoMayus(palabras, mayus).join(", ");  // Se llama a la función pasándole el array y la función callback
+    document.getElementById("respuesta").innerHTML += "<br><br> ";
+
+
+// EJERCICIO 3
+
+    function factorial (num){
+        let resultadoFactorial = num;
+        for (let i = 1; i < num; i++) {
+            resultadoFactorial = resultadoFactorial * i;            
+        }
+        return resultadoFactorial;
+    }
+
+    function factorialArray (array, callback){
+        for (let i = 0; i < array.length; i++){
+            array[i] = factorial(array[i]);
+        }
+        return array;
+    }
+    document.getElementById("respuesta").innerHTML += "<b>Array números: </b>" + numeros.join(", ");
+    document.getElementById("respuesta").innerHTML += "<b><br>Factoriales: </b>" + factorialArray(numeros, factorial).join(", ");  // Se llama a la función pasándole el array y la función callback
+    document.getElementById("respuesta").innerHTML += "<br><br> ";
+
+
+</script>
+</html>
